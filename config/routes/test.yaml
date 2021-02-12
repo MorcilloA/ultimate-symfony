@@ -1,0 +1,10 @@
+# test:
+#   path: /test/{age<\d+>?0}
+#   controller: App\Controller\TestController::test
+  # defaults:
+  #   age: 0
+  # requirements: 
+  #   age: \d+
+  # methods: [GET, POST] # Définit les méthodes authorisées pour la route : surtout utile pour les API
+  # host: {subdomain}.monsite.com # Ici on peut définir les hosts qui ont le droit d'accéder à la page
+  # schemes: [https, http] # Les schemas qui sont acceptés
