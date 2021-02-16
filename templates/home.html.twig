@@ -1,0 +1,74 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Accueil
+{% endblock %}
+
+{% block body %}
+
+	<h1>Nos produits phares</h1>
+
+	<div
+		class="row">
+		{# {% for i in 1..3 %}
+															<div class="col">
+																<div class="card">
+																	<img src="https://picsum.photos/200/200" class="img-fluid" alt="">
+																	<div class="card-body">
+																		<h4 class="card-title">Superbe chaise en Bois</h4>
+																		<p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, quod iusto. At facere minus quibusdam!</p>
+																		<a href="#" class="btn btn-primary btn-sm">Détails</a>
+																		<a href="#" class="btn btn-success btn-sm">Ajouter</a>
+																	</div>
+																</div>
+															</div>
+														{% endfor %} #}
+		{% for product in products %}
+			<div class="col">
+				<div class="card">
+					<img src="{{ product.mainPicture }}" class="img-fluid" alt="">
+					<div class="card-body">
+						<h4 class="card-title">
+							{{ product.name }}
+							({{ product.price / 100 }}) &euro;
+						</h4>
+						<span class="badge badge-info">
+							{{ product.category.name }}
+						</span>
+						<p class="card-text">
+							{{ product.shortDescription }}
+						</p>
+						<a href="#" class="btn btn-primary btn-sm">Détails</a>
+						<a href="#" class="btn btn-success btn-sm">Ajouter</a>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+
+	<hr>
+
+	<h2>Un service irréprochable</h2>
+	<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus obcaecati sit expedita dolorem illo nesciunt alias non similique explicabo ipsa.</p>
+
+	<div class="row">
+		{% include "shared/_assurance.html.twig" with {
+            'color': 'success',
+            'icon': 'fas fa-check',
+            'text': "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, quisquam illo. Libero accusamus rem aspernatur."
+        } %}
+
+		{% include "shared/_assurance.html.twig" with {
+            'color': 'primary',
+            'icon': 'fas fa-truck',
+            'text': "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, quisquam illo. Libero accusamus rem aspernatur."
+        } %}
+
+		{% include "shared/_assurance.html.twig" with {
+            'color': 'danger',
+            'icon': 'fas fa-lock',
+            'text': "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, quisquam illo. Libero accusamus rem aspernatur."
+        } %}
+	</div>
+
+{% endblock %}
