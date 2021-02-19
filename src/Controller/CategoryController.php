@@ -13,6 +13,25 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 
 class CategoryController extends AbstractController
 {
+
+    protected $categoryRepository;
+
+    public function __construct(CategoryRepository $categoryRepository)
+    {
+        $this->categoryRepository = $categoryRepository;
+    }
+
+    public function renderMenuList()
+    {
+        // 1. Aller chercher les catégories dans la base de données (repository)
+        $categories = $this->categoryRepository->findAll();
+
+        // 2. Renvoyer le rendu HTML sous la forme d'une Response ($this->render)
+        return $this->render("category/_menu.html.twig", [
+            "categories" => $categories
+        ]);
+    }
+
     /**
      * @Route("/category", name="category")
      */
@@ -34,7 +53,7 @@ class CategoryController extends AbstractController
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()) {
+        if ($form->isSubmitted() && $form->isValid()) {
 
             $category->setSlug(strtolower($slugger->slug($category->getName())));
 
@@ -59,7 +78,7 @@ class CategoryController extends AbstractController
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $category->setSlug(strtolower($slugger->slug($category->getName())));
 
             $em->flush();
