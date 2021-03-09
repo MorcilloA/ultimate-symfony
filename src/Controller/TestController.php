@@ -22,8 +22,8 @@ class TestController
      */
     public function index()
     {
-        dump($this->calculator->calcul(50));
-        dd("ça marche");
+        // dump($this->calculator->calcul(50));
+        // dd("ça marche");
     }
 
     /**
